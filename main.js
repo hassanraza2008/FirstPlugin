@@ -1,0 +1,1 @@
+alert("Beware!! The extension is up and running!")
