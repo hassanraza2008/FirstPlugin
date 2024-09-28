@@ -7,12 +7,13 @@ for (let i = 0; i < arr.length; i++) {
   arr[i].appendChild(btn);
 
   //Style
-  btn.style.position = 'relative';
-  btn.style.border = '1px solid black';
-  btn.style.borderRadius = '2px';
-  btn.style.textAlign = 'center';
-  btn.style.color = '#000';
-  btn.style.cursor = 'pointer';
+  btn.style.position = "relative";
+  btn.style.border = "1px solid black";
+  btn.style.borderRadius = "2px";
+  btn.style.textAlign = "center";
+  btn.style.color = "#000";
+  btn.style.cursor = "pointer";
+  btn.setAttribute("aria-label", "Copy Code");
 
   if (
     arr[i].scrollWidth === arr[i].offsetWidth &&
@@ -39,24 +40,28 @@ for (let i = 0; i < arr.length; i++) {
 }
 
 var button = document.querySelectorAll(".copy_code_fcc_btn");
-  button.forEach((elm) => {
-    elm.addEventListener('click', (e) => {
+button.forEach((elm) => {
+  elm.addEventListener("click", (e) => {
+    const originalWidth = elm.offsetWidth;
 
-        const originalWidth = elm.offsetWidth;
+    navigator.clipboard
+      .writeText(elm.parentNode.childNodes[0].innerText)
+      .then(() => {
+        elm.textContent = "Copied!";
 
-        navigator.clipboard.writeText(elm.parentNode.childNodes[0].innerText).then(() => {
-            elm.textContent = "Copied!";
+        const newWidth = elm.offsetWidth;
 
-            const newWidth = elm.offsetWidth;
+        const shiftAmount = originalWidth - newWidth;
 
-            const shiftAmount = originalWidth - newWidth;
+        elm.style.transform = `translateX(${shiftAmount}px)`;
 
-            elm.style.transform = `translateX(${shiftAmount}px)`
-
-            setTimeout(() => {
-              elm.textContent = "Copy";
-              elm.style.transform = "translateX(0)";
-            }, 4000); // Change back to "Copy" after 2 seconds
-          });
-    })
-  })
+        setTimeout(() => {
+          elm.textContent = "Copy";
+          elm.style.transform = "translateX(0)";
+        }, 4000); // Change back to "Copy" after 2 seconds
+      }).catch(err => {
+        console.log("Failed to Copy Text: ", err);
+        alert("Failed to copy to Clipboard!")
+      });
+  });
+});
