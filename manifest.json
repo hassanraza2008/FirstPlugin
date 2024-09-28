@@ -3,7 +3,7 @@
     "version": "1.0",
     "name": "Copy FCC",
     "content_scripts": {
-        "matches": ["*://*.freecodecamp.org/*"],
+        "matches": ["*://*.freecodecamp.org/*gi"],
         "js": ["main.js"]
     }
 }
