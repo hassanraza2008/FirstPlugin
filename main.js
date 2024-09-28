@@ -29,6 +29,4 @@ for (let i = 0; i < arr.length; i++) {
     btn.style.bottom = `${arr[i].scrollHeight - 50}px`;
   }
   //end of styling the button
-
-  console.log("Appended");
 }
