@@ -31,3 +31,11 @@ for (let i = 0; i < arr.length; i++) {
   //end of styling the button
   console.log("Appended");
 }
+
+var button = document.querySelectorAll(".copy_code_fcc_btn");
+  button.forEach((elm) => {
+    elm.addEventListener('click', (e) => {
+        navigator.clipboard.writeText(elm.parentNode.childNodes[0].innerText);
+        alert("Copied to Clipboard!!");
+    })
+  })
