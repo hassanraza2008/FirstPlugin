@@ -56,44 +56,50 @@ for (let i = 0; i < arr.length; i++) {
   console.log("Appended");
 }
 
-// Select all buttons with the class 'copy_code_fcc_btn'
-var button = document.querySelectorAll(".copy_code_fcc_btn");
+// Check if the Clipboard API is supported
+if (navigator.clipboard) {
+  // Select all buttons with the class 'copy_code_fcc_btn'
+  var button = document.querySelectorAll(".copy_code_fcc_btn");
 
-// Add click event listeners to all buttons
-button.forEach((elm) => {
-  elm.addEventListener("click", (e) => {
-    // Store the original width of the button
-    const originalWidth = elm.offsetWidth;
+  // Add click event listeners to all buttons
+  button.forEach((elm) => {
+    elm.addEventListener("click", (e) => {
+      // Store the original width of the button
+      const originalWidth = elm.offsetWidth;
 
-    // Get the text content of the <pre> element
-    const textToCopy = elm.parentNode.childNodes[0].innerText;
+      // Get the text content of the <pre> element
+      const textToCopy = elm.parentNode.childNodes[0].innerText;
 
-    // Copy text to clipboard
-    navigator.clipboard
-      .writeText(textToCopy)
-      .then(() => {
-        // Change button text to 'Copied!'
-        elm.textContent = "Copied!";
+      // Copy text to clipboard
+      navigator.clipboard
+        .writeText(textToCopy)
+        .then(() => {
+          // Change button text to 'Copied!'
+          elm.textContent = "Copied!";
 
-        // Calculate the new width of the button
-        const newWidth = elm.offsetWidth;
+          // Calculate the new width of the button
+          const newWidth = elm.offsetWidth;
 
-        // Calculate the amount to shift the button to maintain its position
-        const shiftAmount = originalWidth - newWidth;
+          // Calculate the amount to shift the button to maintain its position
+          const shiftAmount = originalWidth - newWidth;
 
-        // Apply the shift
-        elm.style.transform = `translateX(${shiftAmount}px)`;
+          // Apply the shift
+          elm.style.transform = `translateX(${shiftAmount}px)`;
 
-        // Change back to 'Copy' after 4 seconds
-        setTimeout(() => {
-          elm.textContent = "Copy";
-          elm.style.transform = "translateX(0)";
-        }, 4000);
-      })
-      .catch((err) => {
-        // Handle errors
-        console.error("Failed to Copy Text: ", err);
-        alert("Failed to copy to Clipboard!");
-      });
+          // Change back to 'Copy' after 4 seconds
+          setTimeout(() => {
+            elm.textContent = "Copy";
+            elm.style.transform = "translateX(0)";
+          }, 4000);
+        })
+        .catch((err) => {
+          // Handle errors
+          console.error("Failed to Copy Text: ", err);
+          alert("Failed to copy to Clipboard!");
+        });
+    });
   });
-});
+} else {
+  // Clipboard API is not supported
+  alert("The Clipboard feature is not supported in your browser!");
+}
