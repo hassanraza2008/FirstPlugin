@@ -7,7 +7,11 @@ for (let i = 0; i < arr.length; i++) {
   arr[i].appendChild(btn);
 
   //Style
-  btn.style.position = relative;
+  btn.style.position = 'relative';
+  btn.style.border = '1px solid black';
+  btn.style.borderRadius = '2px';
+  btn.style.textAlign = 'center';
+
 
   if (
     arr[i].scrollWidth === arr[i].offsetWidth &&
@@ -35,7 +39,11 @@ for (let i = 0; i < arr.length; i++) {
 var button = document.querySelectorAll(".copy_code_fcc_btn");
   button.forEach((elm) => {
     elm.addEventListener('click', (e) => {
-        navigator.clipboard.writeText(elm.parentNode.childNodes[0].innerText);
-        alert("Copied to Clipboard!!");
+        navigator.clipboard.writeText(elm.parentNode.childNodes[0].innerText).then(() => {
+            elm.textContent = "Copied!";
+            setTimeout(() => {
+              elm.textContent = "Copy";
+            }, 6000); // Change back to "Copy" after 2 seconds
+          });
     })
   })
