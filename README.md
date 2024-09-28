@@ -55,9 +55,9 @@ Contributions are welcome! If you have any ideas or improvements, feel free to o
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+his project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-If you have any questions or feedback, feel free to reach out to me at [mrismart70@gmail.com].
+If you have any questions or feedback, feel free to reach out to me at [mrismart70@example.com](mailto:mrismart70@example.com).
 
