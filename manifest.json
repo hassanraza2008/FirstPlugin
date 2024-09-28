@@ -1,9 +1,9 @@
 {
     "manifest_version":2,
     "version": "1.0",
-    "name": "FirstPlugingi",
+    "name": "Copy FCC",
     "content_scripts": {
-        "matches": [""],
+        "matches": ["*://*.freecodecamp.org/*"],
         "js": ["main.js"]
     }
 }
