@@ -30,6 +30,7 @@ preElements.forEach((pre) => {
 
   // Set ARIA label for accessibility
   btn.setAttribute("aria-label", "Copy code from this snippet");
+  btn.setAttribute("title", "Copy Code");
 
   // Position the button based on the <pre> element's dimensions
   btn.style.left = `${pre.offsetWidth - 70}px`;
